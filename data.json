@@ -1,0 +1,16 @@
+{
+	"Libros" :[
+		{
+			"id":"01",
+			"lenguaje":"Java",
+			"edicion" : "Cuarta",
+			"autor" : "Jeremias Sprinfield"
+		},
+		{
+			"id":"02",
+			"lenguaje":"PHP",
+			"edicion" : "Segunda",
+			"autor" : "Montgomery Burns"
+		}
+	]
+}
