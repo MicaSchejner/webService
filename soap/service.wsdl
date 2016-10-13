@@ -1,19 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<definitions>
+<definitions name="Service" targetNamespace="urn:Service" xmlns:typens="urn:Service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+
 	<message name="getAlumno">
 		<part name="n1" type="xsd:string" />
 		<part name="n2" type="xsd:string" />
 	</message>
-	<message>
-		<part name="getAlumnoResponse" type="xsd:string" />
+	<message name="getAlumnoResponse">
+		<part name="n1" type="xsd:string" />
+	</message>
+	<message name="saludar">
+		<part name="nombre" type="xsd:string" />
+		<part name="edad" type="xsd:int" />
+	</message>
+	<message name="saludarResponse">
+		<part name="mensajeResponse" type="xsd:string" />
 	</message>
 	<portType name="AlumnoFacadePortType">
 		<operation name="getAlumno">
 			<input message="typens:getAlumno" />
 			<output message="typens:getAlumnoResponse" />
 		</operation>
+		<operation name="saludar">
+			<input message="typens:saludar" />
+			<output message="typens:saludarResponse" />	
+		</operation>
 	</portType>
 	<binding name="AlumnoFacadeBinding" type="typens:AlumnoFacadePortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+			<operation name="getAlumno">
+				<soap:operation soapAction="urn:AlumnoFacadeAction" />
+				<input>
+					<soap:body namespace="urn:Service" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+				</input>
+				<output>
+					<soap:body namespace="urn:Service" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+				</output>
+			</operation>
+			<operation name="saludar">
+				<soap:operation soapAction="urn:AlumnoFacadeAction" />
+				<input>
+					<soap:body namespace="urn:Service" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+				</input>
+				<output>
+					<soap:body namespace="urn:Service" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+				</output>
+			</operation>
 	</binding>
+	<service name="ServiceService">
+		<port name="AlumnoFacadePortType" binding="AlumnoFacadeBinding">
+			<soap:address location="http://localhost/soap/servidor.php" />
+		</port>
+	</service>
 </definitions>

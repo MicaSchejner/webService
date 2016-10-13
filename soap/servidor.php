@@ -13,11 +13,16 @@ Class Alumno {
 	}
 	
 	public function getAlumno($n1,$n2){
-		return $n1 + $n2;
+		//return $n1 . " " . $n2;
+		return "Alumno: " . $this->nombre . " Apellido " . $this->apellido . " Edad: " . $this->edad;
+	}
+	
+	public function saludar($nombre,$edad){
+		return "Hola estimado " . $nombre .", tu edad es " . $edad;
 	}
 }
 
-$server = new SoapServer();
+$server = new SoapServer("service.wsdl");
 $server->setClass("Alumno");
 
 $server->handle();
